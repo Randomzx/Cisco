@@ -1,40 +1,33 @@
 import React, { Component } from "react";
 import './App.css';
 import Banner from "./Banner";
+import Exhibit from "./Exhibit";
+import PublicIP from "./PublicIP";
 
-function App() {
-  function FancyBorder(props) {
+
+class App extends Component {
+  render() {
     return (
-      <div className={'FancyBorder FancyBorder-' + props.color}>
-        {props.children}
+      <div className="App">
+
+        <Banner />
+
+        <div className="Exhibit_Container">
+
+          <Exhibit name="Public IPv4 Address">
+            <PublicIP apiUrl="https://api.ipify.org?format=json" />
+          </Exhibit>
+
+          <Exhibit name="Public IPv6 Address">
+            <PublicIP apiUrl="https://api64.ipify.org?format=json" />
+          </Exhibit>
+
+         
+
+        </div>
       </div>
     );
   }
-
-  function Dialog(props) {
-    return (
-      <FancyBorder color="blue">
-        <h1 className="Dialog-title">
-          {props.title}
-        </h1>
-        <p className="Dialog-message">
-          {props.message}
-        </p>
-      </FancyBorder>
-    );
-  }
-  return (
-    <div className="App">
-
-      <Banner />
-
-      <Dialog
-        title="Welcome"
-        message="Thank you for visitng!" />
-
-
-    </div>
-  );
 }
 
 export default App;
